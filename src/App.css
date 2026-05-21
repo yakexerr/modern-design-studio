@@ -147,3 +147,22 @@ body {
   from { opacity: 1; }
   to { opacity: 0; transform: translateY(10px); }
 }
+
+/* Делаем так, чтобы корень приложения занимал всю высоту экрана */
+#root {
+  height: 100%;
+}
+
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Минимальная высота — весь экран */
+}
+
+.main-content {
+  flex: 1; /* Этот блок растянется и заполнит всё свободное место, выталкивая футер вниз */
+}
+
+footer {
+  flex-shrink: 0; /* Чтобы футер не сжимался */
+}

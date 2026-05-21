@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ServicesPage from './pages/ServicesPage';
 import LoginPage from './pages/LoginPage';
@@ -8,6 +8,8 @@ import ProfilePage from './pages/ProfilePage';
 import OrdersPage from './pages/OrdersPage';
 import ContactPage from './pages/ContactPage';
 import './App.css';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -43,50 +45,29 @@ function App() {
 
   return (
     <Router>
-      <nav className="navbar">
-        <Link to="/" className="logo">СОВРЕМЕННАЯ СТУДИЯ</Link>
-        <div className="nav-links">
-          <Link to="/services">Услуги</Link>
-          <Link to="/orders">Мои заказы</Link> 
-          <Link to="/favorites">Избранное</Link>
-          {user ? (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-              <Link to="/profile" className="user-name" style={{ fontWeight: 'bold', textDecoration: 'none', color: '#000' }}>
-                {user.name}
-              </Link>
-              <button 
-                onClick={logout} 
-                className="order-btn" 
-                style={{ padding: '8px 15px', width: 'auto', fontSize: '12px', background: '#eee', color: '#000' }}
-              >
-                Выйти
-              </button>
-            </div>
-          ) : (
-            <Link to="/login" style={{ textDecoration: 'none', color: '#000' }}>Вход</Link>
-          )}
-          <span className="currency" style={{ marginLeft: '15px', color: '#888' }}>
-            USD: {currency} ₽
-          </span>
-        </div>
-      </nav>
+      <div className="app-wrapper"> {/* Обертка для всего */}
+        <Navbar user={user} logout={logout} currency={currency} />
 
-      {/* Вывод уведомления, если оно есть */}
-      {toast && (
-        <div className="toast-container">
-          <div className="toast">{toast}</div>
-        </div>
-      )}
+        {toast && (
+          <div className="toast-container">
+            <div className="toast">{toast}</div>
+          </div>
+        )}
 
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/services" element={<ServicesPage notify={notify} />} />
-        <Route path="/orders" element={<OrdersPage notify={notify} />} /> {/* ПРОВЕРЬ ЭТУ СТРОКУ */}
-        <Route path="/favorites" element={<FavoritesPage notify={notify} />} />
-        <Route path="/contact" element={<ContactPage notify={notify} />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/login" element={<LoginPage onLogin={login} notify={notify} />} />
-      </Routes>
+        <main className="main-content"> {/* Обертка для контента страниц */}
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/services" element={<ServicesPage notify={notify} />} />
+            <Route path="/orders" element={<OrdersPage notify={notify} />} />
+            <Route path="/favorites" element={<FavoritesPage notify={notify} />} />
+            <Route path="/contact" element={<ContactPage notify={notify} />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/login" element={<LoginPage onLogin={login} notify={notify} />} />
+          </Routes>
+        </main>
+
+        <Footer />
+      </div>
     </Router>
   );
 }
