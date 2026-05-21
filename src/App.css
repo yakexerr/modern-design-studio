@@ -1,38 +1,149 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  color: #1a1a1a;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Навигация — теперь ровная */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 80px;
+  height: 80px;
+  background: white;
+  border-bottom: 1px solid #eaeaea;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 30px; /* Расстояние между ссылками */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.nav-links a {
+  text-decoration: none;
+  color: #666;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.nav-links a:hover { color: #000; }
+
+.logo { font-weight: 800; font-size: 22px; text-decoration: none; color: #000; letter-spacing: -1px; }
+
+/* Контейнер */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+/* Карточки услуг */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid #eee;
+  transition: 0.3s;
   display: flex;
   flex-direction: column;
+}
+
+.card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+
+/* Картинки — ТЕПЕРЬ БУДУТ ВИДНЫ */
+.card-img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  background-color: #f0f0f0; /* Заглушка, если картинка не прогрузится */
+}
+
+.card-content { padding: 32px; flex-grow: 1; display: flex; flex-direction: column; }
+
+.card h3 { font-size: 24px; margin: 0 0 12px 0; font-weight: 700; }
+
+.card p { color: #666; line-height: 1.6; margin-bottom: 24px; flex-grow: 1; }
+
+.price-tag { font-size: 20px; font-weight: 600; margin-bottom: 20px; display: block; }
+
+/* Кнопка — НИКАКОЙ ЙОГИ */
+.order-btn {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 16px;
+  border-radius: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: 0.2s;
+}
+
+.order-btn:hover { background: #333; }
+
+/* Поиск */
+.search-input {
+  width: 100%;
+  max-width: 450px;
+  padding: 16px 24px;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  font-size: 16px;
+  margin-bottom: 40px;
+  outline: none;
+}
+
+/* Контейнер для уведомлений */
+.toast-container {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toast {
+  background: #000;
+  color: #fff;
+  padding: 16px 24px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  font-weight: 500;
+  min-width: 250px;
+  animation: slideIn 0.3s ease-out forwards;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.toast.fade-out {
+  animation: fadeOut 0.3s ease-in forwards;
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; transform: translateY(10px); }
 }
