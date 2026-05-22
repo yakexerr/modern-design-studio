@@ -6,7 +6,7 @@ const FavoritesPage = ({ notify }) => {
   // Получаем пользователя ОДИН РАЗ при загрузке или из localStorage напрямую в эффекте
   useEffect(() => {
     const userData = localStorage.getItem('user');
-    if (userData) {
+    if (userData) { // если залогинен
       const parsedUser = JSON.parse(userData);
       const key = `favs_${parsedUser.name}`;
       const savedFavs = JSON.parse(localStorage.getItem(key)) || [];
@@ -46,7 +46,7 @@ const FavoritesPage = ({ notify }) => {
             <div key={item.id} className="card">
               {/* Добавили проверку картинки */}
               <img 
-                src={item.img || "https://via.placeholder.com/400x300?text=No+Image"} 
+                src={item.img} 
                 alt={item.title} 
                 className="card-img" 
               />

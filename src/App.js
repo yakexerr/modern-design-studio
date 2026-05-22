@@ -13,7 +13,7 @@ import Footer from './components/Footer';
 
 function App() {
   const [user, setUser] = useState(null);
-  const [currency, setCurrency] = useState(null); // Пункт 12 (Запросы)
+  const [currency, setCurrency] = useState(null); // Пункт 12 (Запросы) курс доллара
   const [toast, setToast] = useState(null); // Состояние для уведомления
 
   const notify = (message) => {
@@ -30,7 +30,7 @@ function App() {
     fetch('https://www.cbr-xml-daily.ru/daily_json.js')
       .then(res => res.json())
       .then(data => setCurrency(data.Valute.USD.Value.toFixed(2)));
-  }, []);
+  }, []); // [] значит что при загрузке страницы выполнится и всё
 
   const login = (name) => {
     const userData = { name };
@@ -48,7 +48,7 @@ function App() {
       <div className="app-wrapper"> {/* Обертка для всего */}
         <Navbar user={user} logout={logout} currency={currency} />
 
-        {toast && (
+        {toast && ( // && проверяет есть ли что то в teast, если нет то блок не выполнится
           <div className="toast-container">
             <div className="toast">{toast}</div>
           </div>

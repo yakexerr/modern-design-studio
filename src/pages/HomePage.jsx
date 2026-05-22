@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 const HomePage = () => {
   return (
     <div className="container">
-      {/* Секция Hero (Приветствие как в Figma) */}
       <section style={{ textAlign: 'center', padding: '60px 0' }}>
         <h1 style={{ fontSize: '48px', marginBottom: '20px' }}>
           Мы создаем бренды будущего
@@ -21,7 +20,6 @@ const HomePage = () => {
         </Link>
       </section>
 
-      {/* Секция "Наши работы" (Выполняем пункт 4 ТЗ: .map) */}
       <section>
         <h2 style={{ marginBottom: '30px' }}>Наши последние проекты</h2>
         <div className="grid">

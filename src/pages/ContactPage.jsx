@@ -11,7 +11,7 @@ const ContactPage = ({ notify }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Имитируем отправку: сохраняем в историю заявок (чтобы потом показать в Профиле, если захочешь)
+    // Имитируем отправку: сохраняем в историю заявок (чтобы потом показать в Профиле)
     const history = JSON.parse(localStorage.getItem('requests')) || [];
     history.push({ ...formData, date: new Date().toLocaleDateString() });
     localStorage.setItem('requests', JSON.stringify(history));

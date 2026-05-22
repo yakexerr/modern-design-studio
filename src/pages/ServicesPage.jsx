@@ -63,7 +63,6 @@ const ServicesPage = ({notify}) => {
       <div className="grid">
         {filteredServices.map(service => (
           <div key={service.id} className="card">
-            {/* Картинка теперь обязательна */}
             <img src={service.img} alt={service.title} className="card-img" />
             <div className="card-content">
               <h3>{service.title}</h3>
